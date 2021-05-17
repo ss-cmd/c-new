@@ -1,90 +1,86 @@
 function intro() {
-    //set the polygons;
-    console.log("i am scene01");
-    let polygons;
-    let polygonsX = [];
-    let polygonsY = [];
+    console.log("i am scene01 inrovideo");
+    // an array to add multiple particles
+    let particles = [];
 
     this.enter = function () {
-        //intro video 30s
+        ///set 30000 to finish the video file
         vid.play();
-        //set 30000 to finish the video file
-        //try 时间
-        //setTimeout(showText, 36000);
-        setTimeout(showQuestion, 38000);
-
+        setTimeout(showProjectname, 31000);
+        for (let i = 0; i < width / 10; i++) {
+            particles.push(new Particle());
+        }
     }
-
-   
 
     this.draw = function () {
-        //background("#faf5ed");
-        //video doesn't work, will fix it
-        image(vid, windowWidth / 5, windowHeight / 4);
-        vid.size(480, 280);
-        if (setTimeout(30000)){
-            background('#faf5ed');
-            showText();
-        }   
+        //background('#faf5ed');
+        background('#FEFEFE');
+        vid.size(540, 380);
+        image(vid, width / 2-300, height / 2-200 );
+        showText();
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].createParticle();
+            particles[i].moveParticle();
+            particles[i].joinParticles(particles.slice(i));
+        }
     }
 
-    function showText() {
-        //for show the text
-        
-        console.log("i am title");
-        //project title
-        fill('#0005A4');
+    // this class describes the properties of a single particle.
+    class Particle {
+        // setting the co-ordinates, radius and the
+        // speed of a particle in both the co-ordinates axes.
+        constructor() {
+            this.x = random(0, width);
+            this.y = random(0, height);
+            this.r = random(1, 8);
+            this.xSpeed = random(-2, 2);
+            this.ySpeed = random(-1, 1.5);
+        }
 
-        textSize(50);
-        noStroke();
-        //fill("#ffb0ea");
-        textAlign(CENTER, CENTER);
-        text("CLOSER", width / 2, height / 2);
+        // creation of a particle.
+        createParticle() {
+            noStroke();
+            //fill(174,31,35);
+            fill('#004AFF');
+            circle(this.x, this.y, this.r);
+        }
 
-        //fill("#ffb0ea");
-        noStroke();
-        textSize(20);
-        text("Low Res IMA", width / 2, height / 2 + 200);
-        text("Ivy Shu ", width / 2, height / 2 + 220);
+        // setting the particle in motion.
+        moveParticle() {
+            this.xSpeed *= -1;
+            if (this.y < 0 || this.y > height)
+                this.ySpeed *= -1;
+            this.y += this.ySpeed;
+        }
 
-        const dim = Math.min(width, height);
-        const time = millis() / 1000;
-        strokeWeight(dim * 0.005);
-
-        // Get a value that ping-pongs from 0 ... 1
-        const pingPong = sin(time * 0.75 - PI / 2) * 0.5 + 0.5;
-
-        // Get a number of points, using pow() to skew to one end
-        const points = lerp(2, 100, pow(pingPong, 2.5));
-
-        // Size of shape
-        const radius = dim / 10;
-
-        // Draw shape with an angle offset
-        const angle = pingPong * PI * 2;
-        polygon(width / 2, height / 1.5, radius, points, angle);
-
-    }
-
-    function polygon(x, y, radius, sides = 3, angle = 0) {
-        beginShape();
-        console.log("i am drawing polygon");
-        for (let j = 0; j < 2; j++) {
-            for (let i = 0; i < sides; i++) {
-                const a = angle + TWO_PI * (i / sides);
-                let sx = x + cos(a) * radius;
-                let sy = y + sin(a) * radius;
-                vertex(sx, sy);
-
-            }
-            endShape(CLOSE);
+        // this function creates the connections(lines)
+        // between particles which are less than a certain distance apart
+        joinParticles(paraticles) {
+            particles.forEach(element => {
+                let dis = dist(this.x, this.y, element.x, element.y);
+                if (dis < 55) {
+                    //stroke('black');
+                    stroke('#ABE7FF ');
+                    line(this.x, this.y, element.x, element.y);
+                }
+            });
         }
     }
 
 
-    function showQuestion() {
+    function showText() {
+        fill('#0005A4');
+        textFont(font2);
+        noStroke();
+        strokeWeight(2);
+        textSize(20);
+        textAlign(LEFT, BASELINE);
+        text("This project needs to turn on the sound ", 150 ,height / 2-280);
+        text("The video might need to be refreshed to load", 150 ,height / 2-240);
+    }
+    function showProjectname() {
         vid.stop();
-        mgr.showScene(question);
+        mgr.showScene(Projectname);
         console.log('01 scene ends');
     }
 }

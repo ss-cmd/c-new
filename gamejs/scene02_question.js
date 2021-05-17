@@ -6,19 +6,21 @@ function question() {
     this.enter = function () {
         //　ask user question,36s
         mySound1.play();
-        setTimeout(showtoCamera, 38000);
         //want to resize the canvas
         //createCanvas(200,300);
-        //setTimeout(showSayname, 38000);
-        //sound wave
         fft = new p5.FFT();
         frameRate(60);
         amplitude = new p5.Amplitude();
+
+        // setTimeout(showText, 30000);
+        setTimeout(showtoCamera, 38000);
     }
 
     this.draw = function () {
-        background('#faf5ed');
-        voiceWave();         
+        //background('#faf5ed');
+        background('#FEFEFE');
+        voiceWave();
+        showText();
     }
 
     function voiceWave() {
@@ -32,16 +34,28 @@ function question() {
         translate(0, height / 2);
 
         f1 = peak * 0.5;
-
         for (let i = 0; i < width; i++) {
             strokeWeight(5);
             stroke('#0005A4');
             line(i, 60 * sin((f1 * radians(frameCount + i)) / 5),
-                i - 1, 60 * sin((f1 * radians(frameCount + i - 1)) / 5));     
+                i - 1, 60 * sin((f1 * radians(frameCount + i - 1)) / 5));
         }
     }
 
-   
+     function showText(){
+         //try here
+        console.log("miss the text")
+        fill('#0005A4');
+        //fill("#ffb0ea");
+        textSize(50);
+        noStroke();
+        //fill("#ffb0ea");
+        textAlign(CENTER, CENTER);
+        text("I care about your feeling,you're great so far", width / 2, height-100); 
+        console.log("miss the text2")
+        text("Be present，be intuitive ", width / 2, height-80); 
+     }
+
     function showtoCamera() {
         mySound1.stop();
         mgr.showScene(toCamera);

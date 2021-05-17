@@ -52,7 +52,7 @@ function playit() {
 
     this.draw = function () {
         image(video, 0, 0, windowWidth, windowHeight);
-        background("#471471");
+        background("#faf5ed");
         //if pose loaded, run thouse functions
         if (poses) {
             // console.log("123");
@@ -61,6 +61,19 @@ function playit() {
             let checked = checkSound();
             console.log(checked);
         }
+        showText();
+    }
+
+    function showText(){
+        console.log('i am intro text');
+        noStroke();
+        fill('#0005A4');
+        textSize(20);
+        textFont(font2);
+        textAlign(LEFT,LEFT);
+        text('This is your avatar.', 100, height / 2);
+        text('The system is detecting the distance between you and screen.', 100, height / 2 + 40);
+        text("Feel free to play with the distance.", 100, height / 2 + 80);
     }
 
     function checkSound() {
@@ -82,7 +95,7 @@ function playit() {
                 let keypoint = pose.keypoints[1];
                 let keypoint1 = pose.keypoints[2];
                 if (keypoint.score > 0.2) {
-                    fill('#ffb0ea');
+                    fill('#0005A4');
                     noStroke();
                     let x1 = keypoint.position.x;
                     let y1 = keypoint.position.y;
@@ -99,7 +112,7 @@ function playit() {
                     // beginShape(triangleS);
                     beginShape(TRIANGLES);
                     for (i = 0; i < points.length; i++) {
-                        stroke('#ffb0ea');
+                        stroke('#0005A4');
                         strokeWeight(2);
                         x = points[i]._x;
                         y = points[i]._y;
@@ -109,7 +122,7 @@ function playit() {
                     }
                     endShape(CLOSE);
                 }
-                console.log('does it work')
+                
 
                 if (i == 1) {
                     // then call this function to calculate distance
@@ -119,16 +132,7 @@ function playit() {
         }
     }
 
-    // function showText(){
-    //     fill('#0005A4');
-    //     //fill("#ffb0ea");
-    //     textSize(50);
-    //     noStroke();
-    //     //fill("#ffb0ea");
-    //     textAlign(CENTER, CENTER);
-    //     text("I received your reaction,you're great so far", width / 2, height-200); 
-    //     text("Be present，be intuitive ", width / 2, height-200); 
-    //  }
+   
 
     function tri() {
         console.log('haha');

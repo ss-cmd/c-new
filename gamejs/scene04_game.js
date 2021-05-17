@@ -1,7 +1,6 @@
 function game() {
     console.log('i am start')
     //sound wave
-    let f2 = 20;
     
     this.enter = function () {
         //32s

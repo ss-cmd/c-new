@@ -32,19 +32,18 @@ function toCamera() {
     function takesnap() {
         //set the camera
         snapshot = video.get();
-        print(snapshot);
         //image(snapshot, width/6, height/2); // draw the video frame to canvas
-        image(snapshot, width/6, height/2);
-        // image(snapshot, width/0.5, height/2);
+        image(snapshot, width/2-300, height/2-100);
       }
 
     function systemText(){
-        textSize(20);         
+        textSize(50);         
         noStroke();
         fill(174,31,35);
+        textFont(font2);
         textAlign(CENTER, CENTER);
-        text("system error", width / 2, height / 2-100);
-        text("The next step will be excuted ", width / 2, height / 2-80);
+        text("System error", width / 2, height / 2-200);
+        text("The next step will be excuted ", width / 2, height / 2-150);
     }
 
     function showGame(){

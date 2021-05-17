@@ -4,11 +4,8 @@ let mgr;
 let vid; 
 
 let font;
-//在之后用过了
-// let polygons;
-// let polygonsX = [];
-// let polygonsY = [];
 var fontfile = "data/Krungthep.otf";
+var fontfile2 ='data/Hind-Medium.ttf';
 //sound array
 let mySounds = [];
 let mySound1; 
@@ -23,8 +20,8 @@ let mySound9;
 
 function preload() {
   font = loadFont(fontfile);
-  //sound
-  //mySound1 = loadSound('../text-confirm.mp3');
+  font2= loadFont(fontfile2);
+  
   mySound1 = loadSound('../02-question.mp3');
   mySound2 = loadSound('../03-systemerror.mp3');
   mySound3 = loadSound('../04-sayyourname.mp3');
@@ -42,15 +39,13 @@ function setup() {
   textFont(font);
   //create sound array
   mySounds = [mySound1, mySound2, mySound3,mySound4, mySound5, mySound6, mySound7, mySound8, mySound9]
-  //scence manager
-  
-  // mgr.showNextScene();
+ 
   //videos
   vid = createVideo('01intro.mp4');
   vid.hide();
   mgr = new SceneManager();
-  mgr.showScene(question);
-  //mgr.showScene(playit);
+  mgr.showScene(intro);
+  //test mgr.showScene(playit);
 }
 
 // On window resize, update the canvas size
