@@ -30,7 +30,6 @@ function question() {
         //fill(174,31,35);
         let level = amplitude.getLevel();
         let peak = map(level, 0, 1, 0, height); // ''peak'' is actually not an accurate name, because it determines the number of waves (frequency) and not the height of them.
-        //console.log('voice');
         translate(0, height / 2);
 
         f1 = peak * 0.5;
@@ -43,17 +42,14 @@ function question() {
     }
 
      function showText(){
-         //try here
-        console.log("miss the text")
         fill('#0005A4');
         //fill("#ffb0ea");
-        textSize(50);
+        textSize(20);
+        textFont(font2);
         noStroke();
         //fill("#ffb0ea");
         textAlign(CENTER, CENTER);
-        text("I care about your feeling,you're great so far", width / 2, height-100); 
-        console.log("miss the text2")
-        text("Be present，be intuitive ", width / 2, height-80); 
+        text("Be present，be intuitive ", width / 2, height/1.5-80); 
      }
 
     function showtoCamera() {

@@ -49,7 +49,7 @@ function toCamera() {
     function showGame(){
         video.stop();
         mgr.showScene(game);
-        console.log('this scene03 ends');
+        //console.log('this scene03 ends');
     }
 
 }

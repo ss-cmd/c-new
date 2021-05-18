@@ -6,7 +6,7 @@ function intro() {
     this.enter = function () {
         ///set 30000 to finish the video file
         vid.play();
-        setTimeout(showProjectname, 31000);
+        setTimeout(showProjectname, 34000);
         for (let i = 0; i < width / 10; i++) {
             particles.push(new Particle());
         }

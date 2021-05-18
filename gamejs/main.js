@@ -35,7 +35,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background('#faf5ed');
+  //background('#faf5ed');
   textFont(font);
   //create sound array
   mySounds = [mySound1, mySound2, mySound3,mySound4, mySound5, mySound6, mySound7, mySound8, mySound9]
@@ -44,7 +44,8 @@ function setup() {
   vid = createVideo('01intro.mp4');
   vid.hide();
   mgr = new SceneManager();
-  mgr.showScene(intro);
+  mgr.showScene(playit);
+  //mgr.showScene(louder);
   //test mgr.showScene(playit);
 }
 

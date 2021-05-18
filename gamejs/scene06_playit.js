@@ -31,7 +31,7 @@ function playit() {
 
 
     function modelReady() {
-        select("#status").html("Model Loaded");
+        select("#status").html("Model Loaded"); 
     }
 
     // Start detecting faces
@@ -42,7 +42,7 @@ function playit() {
     // Got faces
     function gotFaces(error, result) {
         if (error) {
-            console.log(error);
+            //console.log(error);
             return;
         }
         detections = result;
@@ -52,25 +52,25 @@ function playit() {
 
     this.draw = function () {
         image(video, 0, 0, windowWidth, windowHeight);
-        background("#faf5ed");
+        //background("#faf5ed");
+        background('#0005A4');
+        //background('#fefefe');
         //if pose loaded, run thouse functions
         if (poses) {
-            // console.log("123");
             drawKeypoints();
             checkSound();
             let checked = checkSound();
-            console.log(checked);
+            //console.log(checked);
         }
         showText();
     }
 
     function showText(){
-        console.log('i am intro text');
         noStroke();
-        fill('#0005A4');
+        fill('#fefefe');
         textSize(20);
         textFont(font2);
-        textAlign(LEFT,LEFT);
+        // textAlign(LEFT,LEFT);
         text('This is your avatar.', 100, height / 2);
         text('The system is detecting the distance between you and screen.', 100, height / 2 + 40);
         text("Feel free to play with the distance.", 100, height / 2 + 80);
@@ -85,7 +85,7 @@ function playit() {
 
     // A function to draw ellipses over the detected keypoints
     function drawKeypoints() {
-        console.log("i am draw")
+        //console.log("i am draw")
         // Loop through all the poses detected
         for (let i = 0; i < poses.length; i++) {
             // For each pose detected, loop through all the keypoints
@@ -95,7 +95,7 @@ function playit() {
                 let keypoint = pose.keypoints[1];
                 let keypoint1 = pose.keypoints[2];
                 if (keypoint.score > 0.2) {
-                    fill('#0005A4');
+                    fill('#fefefe');
                     noStroke();
                     let x1 = keypoint.position.x;
                     let y1 = keypoint.position.y;
@@ -112,7 +112,7 @@ function playit() {
                     // beginShape(triangleS);
                     beginShape(TRIANGLES);
                     for (i = 0; i < points.length; i++) {
-                        stroke('#0005A4');
+                        stroke('#fefefe');
                         strokeWeight(2);
                         x = points[i]._x;
                         y = points[i]._y;
@@ -123,7 +123,6 @@ function playit() {
                     endShape(CLOSE);
                 }
                 
-
                 if (i == 1) {
                     // then call this function to calculate distance
                     tri();
@@ -135,23 +134,21 @@ function playit() {
    
 
     function tri() {
-        console.log('haha');
-        console.log(d);
         userStartAudio();
         if (d < 20) {
-            console.log("this is bio+by " + d);
+            //console.log("this is bio+by " + d);
             if (!checkSound()) mySound9.play();
         } else if (d < 40) {
-            console.log("this is chat  " + d);
+            //console.log("this is chat  " + d);
             if (!checkSound()) mySound8.play();
         } else if (d < 80) {
-            console.log("this is big move! " + d);
+            //console.log("this is big move! " + d);
             if (!checkSound()) mySound7.play();
         } else if (d < 100) {
-            console.log("this is sing song " + d);
+            //console.log("this is sing song " + d);
             if (!checkSound()) mySound6.play();
         } else if (d < 120) {
-            console.log("this is 6 count out number" + d);
+            //console.log("this is 6 count out number" + d);
             if (!checkSound()) mySound5.play();
         }
     }
